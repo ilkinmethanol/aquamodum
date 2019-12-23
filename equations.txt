@@ -1,0 +1,189 @@
+<<<<<<< HEAD
+Dissolved Oxygen			% Saturation	
+Fecal Coliform				#/100 mL
+pH					0-14
+BOD-5					mg/L
+Delta Temp				degrees C
+Phosphate				mg/L
+Nitrate					mg/L
+Turbidity				NTU	
+TS 					mg/L
+	
+INPUT EXAMPLE [100,1,7.5,5,0,0.3,1,10,15]
+
+Q-VALUE CALCULATION
+-----------------------------
+Q(DO) = 
+{
+	IF DO <= 100 ->  -0.00272*x^4 + 0.00368*x^3 - 0.004975*x^2+0.51*x + 1.3768
+	ELIF 100 < DO <=140 -> 189.31*e^(-0.063*x)
+	ELIF DO>140 -> 50
+};
+
+Q(FC) = {
+
+	IF FC<=1000 ->  -11,332*LN(x)+97,389
+	ELIF 1000<FC<=100000 -> -3,855*LN(x)+45,952
+	ELIF FC>100000 -> 2
+
+}
+Q(PH) = {
+	
+	IF PH <2 -> 0
+	ELIF 2 < PH <=7.4 -> -0,521223* (x)^4 +9,391153* (x)^3-55,61814* (x)^2+137,4489* (x)-119,2418
+	ELIF 7.4 < PH <=12 -> -0,7298*(x)^4+29,54561*(x)^3-440,069*(x)^2+2835,152*(x)-6572,185
+	ELIF PH > 12 -> 0
+
+}
+Q(BOD5) = {
+	IF BOD5<=30 -> 93,949*e^(-0,1021*x)
+	ELIF BOD5>30 -> 2
+
+}
+Q(DT) = {
+	IF DT <=0 -> 3,818*(x)+93,49;
+	ELIF DT >0 -> -0,00043*(x)^4+0,024654*(x)^3-0,328228*(x)^2-3,573817*(x)+94,31032
+}
+Q(PT) = {
+	IF PT <=10 -> -16,969*LN(F7)+41,046
+	ELIF PT >10 -> 2
+}
+Q(NT) = {
+	IF  	   NT <=70 -> 0,0000383*(x)^6-0,000129*(x)^5+0,000169*(x)^4-0,010838*(x)^3+0,363239*(x)^2-6,996626*(x)+94,4843
+	ELIF  70 < NT <=75 -> 5
+	ELIF  75 < NT <=80 -> 4
+	ELIF  80 < NT <=85 -> 3
+	ELIF  85 < NT <=100 -> 2
+	ELIF  	  NT > 100 -> 1
+}
+Q(TB) = {
+	IF TB <= 100 -> 0,000114*(x)^4-0,000347*(x)^3+0,039581*(x)^2-2,434706*(x)+97,4592
+	ELIF TB > 100 -> 5
+}
+Q(TS) = {
+	IF TS <=500 -> 0,00007*(x)^5-0,000178*(x)^4+0,000108*(x)^3-0,00299*(x)^2+0,246919*(x)+80,46506
+	ELIF TS > 500 -> 20
+
+}
+-------------------------------
+
+
+Q-VALUE AND WEIGHT MULTIPLICATION
+-------------------------------------
+
+WQ(DO) = Q(DO) * 0.17
+WQ(FC) = Q(FC) * 0.16
+WQ(PH) = Q(PH) * 0.11
+WQ(BOD5) = Q(BOD5) * 0.11
+WQ(DT) = Q(DT) * 0.11
+WQ(PT) = Q(PT) * 0.1
+WQ(NT) = Q(NT) * 0.1
+WQ(TB) = Q(TB) * 0.08
+WQ(TS) = Q(TS) * 0.07
+-------------------------------------
+
+FINAL RESULT :
+
+WQI = WQ(DO)+WQ(FC)+WQ(PH)+WQ(BOD5)+WQ(DT)+WQ(PT)+WQ(NT)+WQ(TB)+WQ(TS)
+
+WQI = {0-100} Bu intervalda qiymet alinir . 
+IF WQI >= 90 -> Mukemmel/EXCELLENT
+ 70 - Yaxsi/GOOD
+ 50 -  Orta/NORMAL
+ 25 - Pis/CONTAMINATED
+ 0 - Cox pis/DANGEROUSLY CONTAMINATED
+=======
+Dissolved Oxygen			% Saturation	
+Fecal Coliform				#/100 mL
+pH					0-14
+BOD-5					mg/L
+Delta Temp				degrees C
+Phosphate				mg/L
+Nitrate					mg/L
+Turbidity				NTU	
+TS 					mg/L
+	
+INPUT EXAMPLE [100,1,7.5,5,0,0.3,1,10,15]
+
+Q-VALUE CALCULATION
+-----------------------------
+Q(DO) = 
+{
+	IF DO <= 100 ->  -0.00272*x^4 + 0.00368*x^3 - 0.004975*x^2+0.51*x + 1.3768
+	ELIF 100 < DO <=140 -> 189.31*e^(-0.063*x)
+	ELIF DO>140 -> 50
+};
+
+Q(FC) = {
+
+	IF FC<=1000 ->  -11,332*LN(x)+97,389
+	ELIF 1000<FC<=100000 -> -3,855*LN(x)+45,952
+	ELIF FC>100000 -> 2
+
+}
+Q(PH) = {
+	
+	IF PH <2 -> 0
+	ELIF 2 < PH <=7.4 -> -0,521223* (x)^4 +9,391153* (x)^3-55,61814* (x)^2+137,4489* (x)-119,2418
+	ELIF 7.4 < PH <=12 -> -0,7298*(x)^4+29,54561*(x)^3-440,069*(x)^2+2835,152*(x)-6572,185
+	ELIF PH > 12 -> 0
+
+}
+Q(BOD5) = {
+	IF BOD5<=30 -> 93,949*e^(-0,1021*x)
+	ELIF BOD5>30 -> 2
+
+}
+Q(DT) = {
+	IF DT <=0 -> 3,818*(x)+93,49;
+	ELIF DT >0 -> -0,00043*(x)^4+0,024654*(x)^3-0,328228*(x)^2-3,573817*(x)+94,31032
+}
+Q(PT) = {
+	IF PT <=10 -> -16,969*LN(F7)+41,046
+	ELIF PT >10 -> 2
+}
+Q(NT) = {
+	IF  	   NT <=70 -> 0,0000383*(x)^6-0,000129*(x)^5+0,000169*(x)^4-0,010838*(x)^3+0,363239*(x)^2-6,996626*(x)+94,4843
+	ELIF  70 < NT <=75 -> 5
+	ELIF  75 < NT <=80 -> 4
+	ELIF  80 < NT <=85 -> 3
+	ELIF  85 < NT <=100 -> 2
+	ELIF  	  NT > 100 -> 1
+}
+Q(TB) = {
+	IF TB <= 100 -> 0,000114*(x)^4-0,000347*(x)^3+0,039581*(x)^2-2,434706*(x)+97,4592
+	ELIF TB > 100 -> 5
+}
+Q(TS) = {
+	IF TS <=500 -> 0,00007*(x)^5-0,000178*(x)^4+0,000108*(x)^3-0,00299*(x)^2+0,246919*(x)+80,46506
+	ELIF TS > 500 -> 20
+
+}
+-------------------------------
+
+
+Q-VALUE AND WEIGHT MULTIPLICATION
+-------------------------------------
+
+WQ(DO) = Q(DO) * 0.17
+WQ(FC) = Q(FC) * 0.16
+WQ(PH) = Q(PH) * 0.11
+WQ(BOD5) = Q(BOD5) * 0.11
+WQ(DT) = Q(DT) * 0.11
+WQ(PT) = Q(PT) * 0.1
+WQ(NT) = Q(NT) * 0.1
+WQ(TB) = Q(TB) * 0.08
+WQ(TS) = Q(TS) * 0.07
+-------------------------------------
+
+FINAL RESULT :
+
+WQI = WQ(DO)+WQ(FC)+WQ(PH)+WQ(BOD5)+WQ(DT)+WQ(PT)+WQ(NT)+WQ(TB)+WQ(TS)
+
+WQI = {0-100} Bu intervalda qiymet alinir . 
+IF WQI >= 90 -> Mukemmel/EXCELLENT
+ 70 - Yaxsi/GOOD
+ 50 -  Orta/NORMAL
+ 25 - Pis/CONTAMINATED
+ 0 - Cox pis/DANGEROUSLY CONTAMINATED
+>>>>>>> 897579ef48a81917cb43f6f9036e3c4c2c7412d3

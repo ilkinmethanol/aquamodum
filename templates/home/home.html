@@ -1,0 +1,418 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Aquamo2dum</title>
+    <link rel="icon" href="{% static 'dz/img/favicon.png'%}' %}" />
+    <link rel="stylesheet" href="{% static 'dz/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'dz/css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static 'dz/css/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'dz/css/themify-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'dz/css/flaticon.css' %}" />
+    <link rel="stylesheet" href="{% static 'dz/css/magnific-popup.css' %}" />
+    <link rel="stylesheet" href="{% static 'dz/css/slick.css' %}" />
+    <link rel="stylesheet" href="{% static 'dz/css/style.css' %}" />
+    <link href="{%static 'leaflet.css'%}" rel="stylesheet" type="text/css" href="">
+  </head>
+
+  <body>
+    <!--::header part start::-->
+    <header class="main_menu home_menu">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <a class="navbar-brand" href="index.html">
+                <img src="{% static 'dz/img/logogo.png'%}" style="width: 181px;margin-top: -18px;" alt="logo" />
+              </a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="ti-menu"></span>
+              </button>
+
+              <div
+                class="collapse navbar-collapse main-menu-item justify-content-center"
+                id="navbarSupportedContent"
+              >
+                <ul class="navbar-nav align-items-center">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#services">services</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="social_icon d-none d-lg-block">
+                <a href="#"><i class="ti-facebook"></i></a>
+                <a href="#"><i class="ti-twitter-alt"></i></a>
+                <a href="#"><i class="ti-instagram"></i></a>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Header part end-->
+<style type="text/css">
+  #myVideo {
+    position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+</style>
+    <!-- banner part start-->
+    <section class="banner_part">
+     
+      <div class="container">
+
+        <div class="row align-items-center">
+           <video autoplay muted loop id="myVideo"> <source src="{% static 'lab_video.mp4' %}" type="video/mp4"></video>
+          <div class="col-lg-6 offset-lg-1">
+
+            <div class="banner_text">
+              <div class="banner_text_iner">
+                <h5>Water quality laboratory</h5>
+                <h1>Calculating Water Quality Index</h1>
+                <a href="#" class="btn_1" style="padding: 14px 70px;">How do we work</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- banner part start-->
+
+    <!--::client logo part end::-->
+    <section class="client_logo">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+            <div
+              class="client_logo_slider owl-carousel d-flex justify-content-between"
+            >
+              <div class="single_client_logo">
+                <img src="{% static 'dz/img/logo/Logo1.png'%}" alt="" />
+              </div>
+              <div class="single_client_logo">
+                <img src="{% static 'dz/img/logo/Logo2.png'%}" alt="" />
+              </div>
+              <div class="single_client_logo">
+                <img src="{% static 'dz/img/logo/Logo3.png'%}" alt="" />
+              </div>
+              <div class="single_client_logo">
+                <img src="{% static 'dz/img/logo/Logo4.png'%}" alt="" />
+              </div>
+              <div class="single_client_logo">
+                <img src="{% static 'dz/img/logo/Logo5.png'%}" alt="" />
+              </div>
+              <div class="single_client_logo">
+                <img src="{% static 'dz/img/logo/Logo6.png'%}" alt="" />
+              </div>
+              <div class="single_client_logo">
+                <img src="{% static 'dz/img/logo/Logo1.png'%}" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--::client logo part end::-->
+
+    <!-- about part start-->
+    <section class="about_part section_padding">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md-6">
+            <div class="about_part_text">
+              <h5>About Us</h5>
+              <h2>Water quality assessment laboratorium</h2>
+              <p>
+                The operations involved in water quality assessment are many and complex. They can
+be compared to a chain of about a dozen links and the failure of any one of them can
+weaken the whole assessment. It is imperative that the design of these operations must
+take into account the precise objectives of the water quality assessment. 
+              </p>
+              <a href="#" class="btn_1" style="padding: 14px 70px;">Enter laboratorium</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="about_part_img">
+              <img src="{% static 'dz/img/about_part_img.jpg'%}" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- about part end-->
+
+    <!-- our_service start-->
+    <section class="our_service">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-xl-4"  style="margin-top: 0px;">
+            <div class="single_feature">
+              <div class="single_service">
+               
+                <h4>
+                  Stage 1: Collecting samples <br />
+                </h4>
+                <p>
+                  Collecting samples for physicochemical analysis and arrange for their delivery to the regional laboratory.
+The use of community members in this way has significant implications for
+training and supervision but would be one way of ensuring more complete
+surveillance coverage.
+                </p>
+             
+              </div>
+            </div>
+          </div>
+
+                    <div class="col-sm-6 col-xl-4" style="margin-top: 0px;" >
+            <div class="single_feature">
+              <div class="single_service">
+               
+                <h4>
+                  Stage 2: Laboratorium experiments <br />
+                </h4>
+                <p>
+                  Ideally, a laboratory infrastructure should be established which will enable all
+samples to be returned to a central or regional laboratory within a few hours of
+being taken. However, this depends on the availability of a good road system and
+of reliable motorized transport for all sampling officers
+                </p>
+            
+              </div>
+            </div>
+          </div>
+
+                    <div class="col-sm-6 col-xl-4"  style="margin-top: 0px;">
+            <div class="single_feature">
+              <div class="single_service">
+                
+                <h4>
+                  Stage 3: Analysing results <br />
+                </h4>
+                <p>
+                  Thus, although it may be possible to establish well-equipped
+central and even regional laboratories for water analysis, at the provincial and
+district levels it may be necessary to rely on a relatively small number of simple
+tests. In some countries there may also be hazards associated with  chemical contaminants
+                </p>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<br>
+<br>
+<hr>
+<br>
+<br>
+
+    <!-- about part start-->
+    <section class="creative padding_bottom">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-start">
+          <div class="col-md-6 col-xl-6">
+            <div class="creative_img">
+              <img src="{% static 'dz/img/creative_img.jpg'%}" alt="" />
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4">
+            <div class="creative_part_text">
+              <h2>We work hard and think creatively</h2>
+              <p>
+                There winged grass midst moving earth seed herb fifth you
+                multiply you divide cattle stars first cattle.
+              </p>
+              <span
+                >“There winged grass midst moving earth seed herb fifth you
+                multiply you divide cattle stars first cattle.</span
+              >
+              <a
+                href="https://www.youtube.com/watch?v=7rjDhyWtKgQ"
+                class="popup-youtube"
+                >See how we work</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- about part end-->
+
+    <!--::review_part end::-->
+    <div class="review_part padding_bottom" id="testimonial">
+      <div class="container">
+       <div id="map" style="width: 1104;height: 560px;"></div>
+      </div>
+    </div>
+    <!--::review_part end::-->
+
+    <!--::cta_part start::-->
+    <div class="cta_part">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <div class="cta_iner">
+              <h1>Let’s create something awesome together</h1>
+              <a href="#" class="btn_1">Discuss project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--::cta_part end::-->
+
+    <!-- footer part start-->
+    <footer class="footer-area">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-sm-6 col-md-3 col-xl-3">
+            <div class="single-footer-widget footer_1">
+              <a href="index.html">
+                <img src="{% static 'dz/img/footer_logo.png'%}" alt="" />
+              </a>
+              <ul>
+                <li><a href="#">Work</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+              <div class="social_icon">
+                <a href="#"><i class="ti-facebook"></i></a>
+                <a href="#"><i class="ti-twitter-alt"></i></a>
+                <a href="#"><i class="ti-dribbble"></i></a>
+                <a href="#"><i class="ti-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+       
+          <div class="col-xl-3 col-sm-6 col-md-3">
+          
+          </div>
+        </div>
+      </div>
+      <img src="{% static 'dz/img/animate_icon/icon_2.png'%}" class="animation_icon_2" alt="">
+    </footer>
+    <!-- footer part end-->
+  <script type="text/javascript">
+      var coordinates = [[]];
+      var i = 0;
+      {%for data in data_wqi%}
+        coordinates[[i]]=[{{data.longtitude}},{{data.latitude}},{{data.dissolved_oxygen}},{{data.fecal_coliform}},{{data.pH}},{{data.bod5}},{{data.deltaTemp}},{{data.phosphate}},{{data.nitrate}},{{data.turbidity}},{{data.ts}}];
+        i = i+1;
+      {%endfor%}
+      {%for data in data_wqi%}
+      var longtitude = {{data.longtitude}};
+      var latitude = {{data.latitude}};
+
+
+
+
+
+ var southWest = L.latLng(39.479526, 47.791572),
+    northEast = L.latLng(41.064453, 51.401364),
+    bounds = L.latLngBounds(southWest, northEast);
+
+   var map = L.map('map').setView([40.376984, 49.853329], 14);
+
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          minZoom: 5,
+          maxBounds: bounds,
+    }).addTo(map);
+
+
+var pointList = [
+new L.LatLng(40.813285, 49.523595),
+new L.LatLng(40.809823, 49.360635),
+new L.LatLng(40.693049, 49.138932),
+new L.LatLng(40.723698, 49.001795),
+new L.LatLng(40.546730, 48.967381),
+new L.LatLng(40.422532, 48.755840),
+new L.LatLng(39.984200, 48.992478),
+new L.LatLng(39.948490, 49.423657),
+];
+
+var pointList2 = 
+[new L.LatLng(41.217416, 47.884502),
+new L.LatLng(41.149142, 48.054182),
+new L.LatLng(41.094826, 48.170191),
+new L.LatLng(40.966296, 48.495051),
+new L.LatLng(40.722079, 48.771645),
+new L.LatLng(40.531554, 48.942687),
+]
+
+
+var firstpolyline = new L.Polyline(pointList, {
+    color: 'red',
+    weight: 3,
+    opacity: 0.5,
+    smoothFactor: 1
+});
+firstpolyline.addTo(map);
+
+var secondpolyline = new L.Polyline(pointList2, {
+    color: 'blue',
+    weight: 3,
+    opacity: 0.5,
+    smoothFactor: 1
+});
+secondpolyline.addTo(map);
+
+
+
+  coordinates.push({{data.longtitude}},{{data.latitude}});
+var customPopup;
+
+for (var i = 0; i < coordinates.length; i++) {
+console.log(coordinates[i][0]);
+console.log(coordinates[i][1]);
+  customPopup = "<ul><li>dissolved_oxygen : "+coordinates[i][2]+" mu/m3</li><li>fecal_coliform : "+coordinates[i][3]+" mu/m3</li><li>pH : "+coordinates[i][4]+" mu/m3</li><li>bod5:"+coordinates[i][5]+" mu/m3</li><li>deltaTemp : "+coordinates[i][6]+" mu/m3</li><li>phosphate : "+coordinates[i][7]+" mu/m3</li><li>nitrate :"+coordinates[i][8]+" mu/m3</li></ul>";
+      
+      marker = new L.marker([coordinates[i][0],coordinates[i][1]]
+        )
+        .bindPopup(customPopup)
+        .addTo(map);
+    }
+
+{%endfor%}
+  </script>
+    <!-- jquery plugins here-->
+    <script src="{% static 'dz/js/jquery-1.12.1.min.js' %}"></script>
+    <script src="{% static 'dz/js/popper.min.js' %}"></script>
+    <script src="{% static 'dz/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dz/js/jquery.magnific-popup.js' %}"></script>
+    <script src="{% static 'dz/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'dz/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'dz/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'dz/js/custom.js' %}"></script>
+    <script type="text/javascript" src="{%static 'leaflet.js'%}"></script>
+
+  </body>
+</html>

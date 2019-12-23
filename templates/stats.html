@@ -1,0 +1,101 @@
+{% load static %}
+{% load render_table from django_tables2 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>e-cology su</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{%static 'leaflet.css'%}" rel="stylesheet" type="text/css" href="">
+  <script type="text/javascript" src="{%static 'leaflet.js'%}"></script>
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/simple-sidebar.css'%}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">E-cology H2O  </div>
+      <div class="list-group list-group-flush">
+        <a href="{% url 'home'%}" class="list-group-item list-group-item-action bg-light">Ana sehife</a>
+        <a href="{% url 'new'%}" class="list-group-item list-group-item-action bg-light">Yeni tetqiqat</a>
+        <a href="{% url 'stats'%}" class="list-group-item list-group-item-action bg-light">Statistika</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+<!-- 
+    Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <!-- <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button> -->
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Ana sehife <span class="sr-only"></span></a>
+            </li>
+          
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+<div class="container" style="height: 250px">
+  <div class="row">
+      <div class="col-md-12">
+       {% render_table results %}
+      </div>
+
+      <div class="col-md-12">
+        <div class="col-md-4">  
+          <div id="map" style="width:1200px;height: 560px;">
+            
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'anime.js'%}"></script>
+  <!-- Menu Toggle Script -->
+
+
+
+  <script type="text/javascript">
+var southWest = L.latLng(39.479526, 47.791572),
+    northEast = L.latLng(41.064453, 51.401364),
+    bounds = L.latLngBounds(southWest, northEast);
+
+   var map = L.map('map').setView([40.376984, 49.853329], 14);
+
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          minZoom: 10,
+          maxBounds: bounds,
+    }).addTo(map);
+
+
+  </script>
+
+</body>
+
+</html>

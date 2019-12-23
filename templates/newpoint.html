@@ -1,0 +1,545 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>e-cology su</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{%static 'leaflet.css'%}" rel="stylesheet" type="text/css" href="">
+  <script type="text/javascript" src="{%static 'leaflet.js'%}"></script>
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/simple-sidebar.css'%}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">E-cology H2O  </div>
+      <div class="list-group list-group-flush">
+        <a href="{% url 'home'%}" class="list-group-item list-group-item-action bg-light">Ana sehife</a>
+        <a href="{% url 'new'%}" class="list-group-item list-group-item-action bg-light">Yeni tetqiqat</a>
+        <a href="{% url 'stats'%}" class="list-group-item list-group-item-action bg-light">Statistika</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+<!-- 
+    Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <!-- <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button> -->
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Ana sehife <span class="sr-only"></span></a>
+            </li>
+         
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+<div class="container" style="height: 250px">
+  <div class="row">
+    
+      <div class="col-md-12">
+        <div class="col-md-4">  
+          <div id="map" style="width:1200px;height: 560px;"></div>
+        </div>
+          <form method="post">
+
+    {% csrf_token %}
+    <div class="row">
+    <div class="col-md-6">
+    <p>
+        <label for="id_materik">Materik:</label>
+        <select name="materik" required="" id="id_materik">
+            <option value="" selected="">---------</option>
+
+            <option value="Avropa">Avropa</option>
+
+            <option value="Asiya">Asiya</option>
+
+
+        </select>
+    </p>
+    <p>
+        <label for="id_olke">Olke:</label>
+        <select name="olke" required="" id="id_olke">
+          <option value="Azerbaijan">Azerbaijan</option>
+        </select>
+    </p>
+    <p>
+        <label for="id_seher">Seher:</label>
+        <input type="text" name="seher" maxlength="50" required="" id="id_seher">
+    </p>
+    <p>
+        <label for="id_bolge">Bolge:</label>
+        <input type="text" name="bolge" maxlength="50" required="" id="id_bolge">
+    </p>
+    <p>
+        <label for="id_su_hovzesi_tipi">Su hovzesi tipi:</label>
+        <select name="su_hovzesi_tipi" required="" id="id_su_hovzesi_tipi">
+            <option value="" selected="">---------</option>
+
+            <option value="okean">okean</option>
+
+            <option value="cay">cay</option>
+
+            <option value="gol">gol</option>
+
+            <option value="yeralti">yeralti</option>
+
+            <option value="meiset">meiset</option>
+
+        </select>
+    </p>
+    <p>
+        <label for="id_obyektin_adi">Obyektin adi:</label>
+        <input type="text" name="obyektin_adi" maxlength="40" required="" id="id_obyektin_adi">
+    </p>
+    <p>
+        <label for="id_longtitude">Longtitude:</label>
+        <input type="text" name="longtitude" maxlength="30" required="" id="id_longtitude">
+    </p>
+    <p>
+        <label for="id_latitude">Latitude:</label>
+        <input type="text" name="latitude" maxlength="30" required="" id="id_latitude">
+    </p>
+    </div>
+    <div class="col-md-6">
+    <p>
+        <label for="id_cirklendiriciler">Cirklendiriciler:</label>
+        <textarea name="cirklendiriciler" cols="40" rows="10" required="" id="id_cirklendiriciler"></textarea>
+    </p>
+    <p>
+        <label for="id_axarin_hecmi">Axarin hecmi:</label>
+        <input type="number" name="axarin_hecmi" required="" id="id_axarin_hecmi">
+    </p>
+    <p>
+        <label for="id_axarin_tipi">Axarin tipi:</label>
+        <select name="axarin_tipi" required="" id="id_axarin_tipi">
+            <option value="" selected="">---------</option>
+
+            <option value="Belediyye axari">Belediyye axari</option>
+
+            <option value="Istehsalat axari">Istehsalat axari</option>
+
+        </select>
+    </p>
+    <p>
+        <label for="id_tested_by">Tested by:</label>
+        <input type="text" name="tested_by" maxlength="30" required="" id="id_tested_by">
+    </p>
+   
+   
+   
+    
+    <p>
+        <label for="id_deltaTemp">DeltaTemp:</label>
+        <input type="number" name="deltaTemp" step="any" required="" id="id_deltaTemp">
+    </p>
+    
+    
+       <hr>
+    
+    </div>
+    </div>
+    <div class="col-md-12">
+      <div class="row">
+      <div class="col-md-3" id="kolba_div">
+
+      <img id="kolba_img" src="{% static 'empty-erlenmeyer-flask-md.png'%}">
+      <img src="{%static 'reactives.png'%}" class="kolba_madde" id="kolba_maddeDissolved">
+      <p id="kolba_deyeri">
+        <label for="id_dissolved_oxygen"><a href="" data-toggle="modal" data-target="#ModalDO">Dissolved oxygen:</a></label>
+        <input type="number" name="dissolved_oxygen" step="any" required="" id="id_dissolved_oxygen">
+      </p>
+      </div>
+
+
+       <div class="col-md-3" id="kolba_div">
+       <img src="{% static 'empty-erlenmeyer-flask-md.png'%}" id="kolba_img"> 
+        <img src="{%static 'reactives.png'%}" class="kolba_madde" id="kolba_maddeFecal">
+         <p id="kolba_deyeri">
+        <label for="id_fecal_coliform"><a href="" data-toggle="modal" data-target="#ModalFC">Fecal coliform:</a></label>
+        <input type="number" name="fecal_coliform" step="any" required="" id="id_fecal_coliform">
+    </p>
+     </div> 
+
+
+       <div class="col-md-3" id="kolba_div">
+       <img src="{% static 'empty-erlenmeyer-flask-md.png'%}" id="kolba_img"> 
+        <img src="{%static 'reactives.png'%}" class="kolba_madde" id="kolba_maddePH">
+         <p id="kolba_deyeri">
+        <label for="id_pH"><a href="" data-toggle="modal" data-target="#Modal_PH">PH:</a></label>
+        <input type="number" name="pH" step="any" required="" id="id_pH">
+    </p>
+     </div> 
+
+
+       <div class="col-md-3" id="kolba_div">
+       <img src="{% static 'empty-erlenmeyer-flask-md.png'%}" id="kolba_img"> 
+        <img src="{%static 'reactives.png'%}" class="kolba_madde" id="kolba_maddeBod5">
+        <p id="kolba_deyeri">
+        <label for="id_bod5"><a href="" data-toggle="modal" data-target="#Modal_Bod5">Bod5:</a></label>
+        <input type="number" name="bod5" step="any" required="" id="id_bod5">
+    </p>
+     </div>
+
+    </div>
+    </div>
+    <hr>
+     <div class="col-md-12">
+      <div class="row">
+      <div class="col-md-3" id="kolba_div">
+
+      <img id="kolba_img" src="{% static 'empty-erlenmeyer-flask-md.png'%}">
+      <img src="{%static 'reactives.png'%}" class="kolba_madde" id="kolba_maddePhosphate">
+      <p>
+        <label for="id_phosphate"><a href="" data-toggle="modal" data-target="#Modal_Phosphate">Phosphate:</a></label>
+        <input type="number" name="phosphate" step="any" required="" id="id_phosphate">
+    </p>
+      </div>
+
+
+       <div class="col-md-3" id="kolba_div">
+       <img src="{% static 'empty-erlenmeyer-flask-md.png'%}" id="kolba_img"> 
+        <img src="{%static 'reactives.png'%}" class="kolba_madde" id="kolba_maddeNitrate">
+       <p>
+        <label for="id_nitrate"><a href="" data-toggle="modal" data-target="#Modal_Nitrate">Nitrate:</a></label>
+        <input type="number" name="nitrate" step="any" required="" id="id_nitrate">
+    </p>
+
+     </div> 
+
+
+       <div class="col-md-3" id="kolba_div">
+       <img src="{% static 'empty-erlenmeyer-flask-md.png'%}" id="kolba_img"> 
+        <img src="{%static 'reactives.png'%}" class="kolba_madde" id="kolba_maddeTurbidity">
+         <p>
+        <label for="id_turbidity"><a href="" data-toggle="modal" data-target="#Modal_Turbidity">Turbidity:</a></label>
+        <input type="number" name="turbidity" step="any" required="" id="id_turbidity">
+    </p>
+
+     </div> 
+
+
+       <div class="col-md-3" id="kolba_div">
+       <img src="{% static 'empty-erlenmeyer-flask-md.png'%}" id="kolba_img"> 
+        <img src="{%static 'reactives.png'%}" class="kolba_madde" id="kolba_maddeTS">
+       
+        <p>
+        <label for="id_ts"><a href="" data-toggle="modal" data-target="#Modal_Ts">Ts:</a></label>
+        <input type="number" name="ts" step="any" required="" id="id_ts">
+    </p>
+     </div>
+
+    </div>
+    </div>
+    <hr>
+    <br>
+    <button type="submit">Elave etmek</button>
+
+
+</form>
+<div id="ModalDO" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg ">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Hell olmus oksigen</h4>
+      </div>
+      <div class="modal-body">
+        <p>dissolved_oxygen – suda həll olmuş oksigenin miqdarıdır. Sudakı canlıların nəfəs alması üçün önəmlidir.
+Təbii sularda və tullantı sularında həll edilən oksigen (DO) səviyyəsi su mühitində fiziki, kimyəvi və biyokimyəvi fəaliyyətlərdən asılıdır. Su çirkliliyinə nəzarət fəaliyyətlərində və təmizləyici qurğularda nəzarətdə həll olunmuş oksigen analizi tətbiq edilir. Çıxarılan oksigenin müəyyənləşdirilməsi üçün iki metoddan istifadə olunur: a) Winkler və ya iyodometrik metod və onun dəyişiklikləri, b) membran elektrodları ilə elektrometrik metod . Winkler (iyodometrik) metodu həll olunan oksigenin oksidləşmə xüsusiyyətinə əsaslanan titrimetrik prosesdir. Bunun əksinə, membran elektrod üsulu molekulyar oksigenin membrana yayılması dərəcəsinə əsaslanır. Metodun seçilməsi istənilən həssaslıq səviyyəsinə, hazırkı müdaxilələrə və laboratoriyalara uyğun aparılır.
+</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Bagla</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="ModalFC" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Faecal coliform</h4>
+      </div>
+      <div class="modal-body">
+        <p>fecal_coliform – canlıların həzm sistemində yaşayan bakteriya növləridir. Suda fecal coliform miqdarı çox olarsa o zaman su zərərli hesab edilir. Bağırsaq çöpü bu qrupa aiddir.
+Coliformlar, isti qanlı heyvanların bağırsaqlarında yaşayan müxtəlif növ bakteriyalardır və fiziki tullantılarda, və təbii olaraq torpaqda tapıla bilər.
+Koliformalar tez-tez insan sağlamlığına təhlükə yaradan xəstəliklərə səbəb olur, bəzi növlər isə mülayim infeksiyaya səbəb olur və su bulaqlarına yayılır.
+Coliform bakteriyalar ümumi xüsusiyyətlərinə görə ümumi koliform və ya fekal koliform kimi adlandırılır və qruplaşdırılır. Bu qrupdakı bakteriyalardan, insanlarda normal flora və aşağı həzm sistemi olan isti qanlı heyvanların "fekal koliformalar" kimi tanınması və fekal çirklənmənin göstəricisi hesab olunur.
+Fekal koliform bakteriyalar (məs. E. coli kimi) daxil olmaqla ümumi koliform bakteriyalar torpaqda digər koliformalar kimi yaşayırlar. Total coliforms suyun bağırsaq çöpləri tərəfindən çirkləndiyini göstərir. İçməli suda koliform bakteriya aşkar edilərsə, onun qaynağı dərhal araşdırılmalıdır.
+</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Bagla</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="Modal_PH" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">PH</h4>
+      </div>
+      <div class="modal-body">
+    <p>pH –  Əsasən, pH dəyəri suyun cod və ya yumşaq olması barədə məlumat verir. Təmiz suyun pH'si 7dir. 7-dən aşağı pH olan su turş , 7-dən çox pH əsas tərkibli su hesab olunur. Suyun korroziyasını müəyyən etmək üçün qələvilik və pH ölçülməsi lazımdır. Ümumiyyətlə, pH kicik 6.5 olan su turşulu, yumşaq və korroziyalı ola bilər. Turşulu suda dəmir, manqan, mis, qurğuşun və sink kimi metal ionları ola bilər. Başqa sözlə, acidic su zəhərli metal səviyyəsi yüksəkdir. Turşulu suy metal boru kəmərlərinə vaxtından əvvəl zərər verə bilər, bu toksinlər özündə sağlamlıq riski daşıyır. Aşağı pH olan suy probleminin həllini suyun neytrallaşdrılmasıdır .  insan üçün 7.2-8.5 arasi normal sayılır. H + konsentrasiyası OH konsentrasiyasından yüksək olduqda, maddə asidikdir; yəni pH dəyəri 7-dən azdır. OH-konsentrasiyası H + -dən yüksək olduqda, maddə əsasdır; yəni pH dəyəri 7-dən çoxdur. Əgər bərabər miqdarda OH + və H + ionları mövcud olduqda, maddə 7 pH ilə işarə olunur.
+</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Bagla</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="Modal_Bod5" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">BOD5</h4>
+      </div>
+      <div class="modal-body">
+        <p>bod5 – bioloji oksigen tələbi Sudaki mikroorqanizmlərin oksigeni istifadə etməsi zamanı tələb olunan oksigen miqdarıdır. 
+BOD suda parçalanan orqanik maddələrin təbiətindən, konsentrasiyasından temperature və işıqdan asılıdır
+Bioloji oksigen ehtiyacı, su numunesindeki (20 ° C təyin olunan zaman periodunda və təyin olunan şərtlərdə) orqanik maddələrin oksidləşməsi üçün mikroorqanizmlər tərəfindən istifadə edilən həll oksigen miqdarıdır. Bioloji oksigen ehtiyacı, quruluşun pozularaq qeyri-üzvi komponentlərinə ayrılması və nitrifikasyon (azot tərkibli üzvi komponentlərin nitrit və nitrat formasını meydana gətirərkən ibarət amonyumun oksidləşməsi) olmaqla iki pillədən ibarətdir. İstədiyiniz addım BOD analizində ilk addımdır. Orqanik maddələrin tam oksidləşmə üçün oksigen ehtiyacının% 98'ini optimal şərtlər altında KOI,% 70ini Boi,% 25'ini kalium permanganat ilə oksitlenebilirlilik testləri verir.
+BOD ölçüsü; suda parçalanabilecek orqanik maddələrin təbiəti və konsentrasiyası, mikroorqanizmlərin təbiəti, sayı və adaptasiyası, mikroorqanizmlər üçün qidaların təbiəti və miqdarı, inkübasyon müddəti, istilik, işıq təsirləri və toksik təsirlərə sahib maddələr ilə bioloji və / və ya biokimyəvi proseslərin təsirləri kimi bir çox faktordan təsirlənər.
+</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Bagla</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="Modal_Phosphate" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Fosfatlar</h4>
+      </div>
+      <div class="modal-body">
+        <p>phosphate və nitrate – Nitrat və fosfat duzlarının miqdarı. Bu maddələr bitkilər üçün mineral mənbəyidir. 
+Azot və fosfor bütün canlı orqanizmlər üçün əsas elementlərdir. Onlar orqanizmə DNT və kimyəvi proseslərdə istifadə olunur. Nitrat və fosfor kimi istifadə edilə bilən bitkilərdə azot və fosfor hazır olduqda bitki artımına səbəb ola bilər. Suda çox bitki artımı su sistemlərinə mənfi təsir göstərə bilər.
+</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Bagla</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="Modal_Nitrate" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Nitratlar</h4>
+      </div>
+      <div class="modal-body">
+        <p>phosphate və nitrate – Nitrat və fosfat duzlarının miqdarı. Bu maddələr bitkilər üçün mineral mənbəyidir. 
+Azot və fosfor bütün canlı orqanizmlər üçün əsas elementlərdir. Onlar orqanizmə DNT və kimyəvi proseslərdə istifadə olunur. Nitrat və fosfor kimi istifadə edilə bilən bitkilərdə azot və fosfor hazır olduqda bitki artımına səbəb ola bilər. Suda çox bitki artımı su sistemlərinə mənfi təsir göstərə bilər.
+</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Bagla</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="Modal_Turbidity" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Bulaniqliliq</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Bagla</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="Modal_Ts" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">TS</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Bagla</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+        <style type="text/css">
+          input[type=number],input[type=text], select ,textarea {
+            width: 100%;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+          }
+          button {
+          width: 100%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        #kolba_div {
+          height: 231px;
+        }
+        #kolba_img {
+          width: 150px;
+          margin-left: 15%;
+        }
+        .kolba_madde {
+        width: 145px;
+        margin-left: 16%;
+        margin-top: -183px;
+        }
+        #kolba_deyeri {
+          margin-top: -20px;
+        }
+        </style>
+      
+      </div>
+  </div>
+</div>
+
+      </div>
+    
+    <!-- /#page-content-wrapper -->
+
+   
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'anime.js'%}"></script>
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+<script type="text/javascript">
+$('[name="dissolved_oxygen"]').change(function(){
+  change_image('kolba_maddeDissolved');
+});
+$('[name="fecal_coliform"]').change(function(){
+ change_image('kolba_maddeFecal');
+});
+$('[name="pH"]').change(function(){
+  change_image('kolba_maddePH');
+});
+$('[name="bod5"]').change(function(){
+  change_image('kolba_maddeBod5');
+});
+$('[name="phosphate"]').change(function(){
+  change_image('kolba_maddePhosphate');
+});
+$('[name="nitrate"]').change(function(){
+  change_image('kolba_maddeNitrate');
+});
+$('[name="turbidity"]').change(function(){
+  change_image('kolba_maddeTurbidity');
+});
+$('[name="ts"]').change(function(){
+  change_image('kolba_maddeTS');
+});
+
+function change_image(imgclass){
+document.getElementById(imgclass).style.filter = "invert(100%)";
+
+}
+</script>
+  <script type="text/javascript">
+var southWest = L.latLng(39.479526, 47.791572),
+    northEast = L.latLng(41.064453, 51.401364),
+    bounds = L.latLngBounds(southWest, northEast);
+
+   var map = L.map('map').setView([40.376984, 49.853329], 14);
+
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          minZoom: 10,
+          maxBounds: bounds,
+    }).addTo(map);
+
+
+  var popup = L.popup();
+
+  function onMapClick(e) {
+    popup
+      .setLatLng(e.latlng)
+      .setContent(e.latlng.toString())
+      .openOn(map);
+  }
+
+  map.on('click', onMapClick);
+  </script>
+
+</body>
+
+</html>

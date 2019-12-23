@@ -1,0 +1,153 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>e-cology su</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{%static 'leaflet.css'%}" rel="stylesheet" type="text/css" href="">
+  <script type="text/javascript" src="{%static 'leaflet.js'%}"></script>
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/simple-sidebar.css'%}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">E-cology H2O </div>
+      <div class="list-group list-group-flush">
+        <a href="{% url 'home'%}" class="list-group-item list-group-item-action bg-light">Ana sehife</a>
+        <a href="{% url 'new'%}" class="list-group-item list-group-item-action bg-light">Yeni tetqiqat</a>
+        <a href="{% url 'stats'%}" class="list-group-item list-group-item-action bg-light">Statistika</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <!-- <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button> -->
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+     
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+       <div id="map" style="width: 1104;height: 560px;"></div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+  <script type="text/javascript">
+var coordinates = [[]];
+var i = 0;
+{%for data in data_wqi%}
+  coordinates[[i]]=[{{data.longtitude}},{{data.latitude}},{{data.dissolved_oxygen}},{{data.fecal_coliform}},{{data.pH}},{{data.bod5}},{{data.deltaTemp}},{{data.phosphate}},{{data.nitrate}},{{data.turbidity}},{{data.ts}}];
+  i = i+1;
+{%endfor%}
+{%for data in data_wqi%}
+var longtitude = {{data.longtitude}};
+var latitude = {{data.latitude}};
+
+
+
+
+
+ var southWest = L.latLng(39.479526, 47.791572),
+    northEast = L.latLng(41.064453, 51.401364),
+    bounds = L.latLngBounds(southWest, northEast);
+
+   var map = L.map('map').setView([40.376984, 49.853329], 14);
+
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          minZoom: 5,
+          maxBounds: bounds,
+    }).addTo(map);
+
+
+var pointList = [
+new L.LatLng(40.813285, 49.523595),
+new L.LatLng(40.809823, 49.360635),
+new L.LatLng(40.693049, 49.138932),
+new L.LatLng(40.723698, 49.001795),
+new L.LatLng(40.546730, 48.967381),
+new L.LatLng(40.422532, 48.755840),
+new L.LatLng(39.984200, 48.992478),
+new L.LatLng(39.948490, 49.423657),];
+
+var pointList2 = 
+[new L.LatLng(41.217416, 47.884502),
+new L.LatLng(41.149142, 48.054182),
+new L.LatLng(41.094826, 48.170191),
+new L.LatLng(40.966296, 48.495051),
+new L.LatLng(40.722079, 48.771645),
+new L.LatLng(40.531554, 48.942687),]
+
+
+var firstpolyline = new L.Polyline(pointList, {
+    color: 'red',
+    weight: 3,
+    opacity: 0.5,
+    smoothFactor: 1
+});
+firstpolyline.addTo(map);
+
+var secondpolyline = new L.Polyline(pointList2, {
+    color: 'blue',
+    weight: 3,
+    opacity: 0.5,
+    smoothFactor: 1
+});
+secondpolyline.addTo(map);
+
+
+
+  coordinates.push({{data.longtitude}},{{data.latitude}});
+var customPopup;
+
+for (var i = 0; i < coordinates.length; i++) {
+console.log(coordinates[i][0]);
+console.log(coordinates[i][1]);
+  customPopup = "<ul><li>dissolved_oxygen : "+coordinates[i][2]+" mu/m3</li><li>fecal_coliform : "+coordinates[i][3]+" mu/m3</li><li>pH : "+coordinates[i][4]+" mu/m3</li><li>bod5:"+coordinates[i][5]+" mu/m3</li><li>deltaTemp : "+coordinates[i][6]+" mu/m3</li><li>phosphate : "+coordinates[i][7]+" mu/m3</li><li>nitrate :"+coordinates[i][8]+" mu/m3</li></ul>";
+      
+      marker = new L.marker([coordinates[i][0],coordinates[i][1]]
+        )
+        .bindPopup(customPopup)
+        .addTo(map);
+    }
+
+{%endfor%}
+  </script>
+
+</body>
+
+</html>
